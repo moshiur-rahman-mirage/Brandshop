@@ -1,7 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Providers/AuthProviders';
 
 const Topnav = () => {
+    const { user, logout, brand,loading } = useContext(AuthContext)
+   
+    const handleSignOut = () => {
+        logout()
+            .then()
+            .catch()
+    }
+
+
     const listitems = <>
         <li><a>Item 1</a></li>
         <li><a>Submenu 1</a></li>
@@ -9,8 +19,8 @@ const Topnav = () => {
         <li><a>Item 3</a></li>
     </>
     return (
-        <div className=''>
-            <div className=" navbar bg-neutral">
+        <div className="bg-slate-400">
+      <div className="navbar bg-gray-400">
 
                 <div className="navbar-start border-red">
                     <div className="dropdown">
@@ -18,16 +28,16 @@ const Topnav = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className=" text-neutral-content menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral rounded-box w-52">
-                        <li><a>Home</a></li>
-                        <li><a>Add Products</a></li>
+                            <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Home</NavLink></li>
+                            <li><NavLink to="/addproduct" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Add Product</NavLink></li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost normal-case text-neutral-content text-xl">Logo</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu  bg-neutral  text-neutral-content menu-horizontal px-1">
-                        <li><a className='hover:text-white'>Home</a></li>
-                        <li><a  className='hover:text-white'>Add Products</a></li>
+                    <ul className="menu hover:text-white  text-neutral-content menu-horizontal px-1">
+                        <li><NavLink to="/" className="text-base" >Home</NavLink></li>
+                        <li><NavLink to="/addproduct" className="text-base" >Add Product</NavLink></li>
                     </ul>
                 </div>
                 <div className='navbar-end text-neutral-content'>
@@ -47,7 +57,11 @@ const Topnav = () => {
                                 </div>
                             </div>
                         </div>
-                        <Link to="/login" className="btn btn-ghost normal-case text-neutral-content text-xl">Log In</Link>
+                        {
+                            user ? <button className="btn btn-ghost normal-case text-neutral-content text-xl" onClick={handleSignOut} >Sign Out</button> :
+                                <NavLink to="/login" className="btn btn-ghost normal-case text-neutral-content text-xl">Log In</NavLink>
+                        }
+
                     </div>
                 </div>
 

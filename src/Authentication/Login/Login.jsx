@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { AiFillGoogleCircle } from "react-icons/ai";
 const Login = () => {
+    const location=useLocation();
+    const navigate=useNavigate();
     const { signInUser, brand,signInWithGoogle } = useContext(AuthContext)
     const handleLogin = e => {
         e.preventDefault();
@@ -15,6 +17,7 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log('login')
+                
             })
             .catch(error => {
                 console.log(error)
@@ -58,7 +61,7 @@ const Login = () => {
                                 <button type="submit" className="w-full text-neutral btn btn-ghost bg-gray-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                                 <div>
                                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                        Don’t have an account yet? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
+                                        Don’t have an account yet? <Link to="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
                                     </p>
                                 </div>
                                 <div className="flex items-center justify-between gap-4">
