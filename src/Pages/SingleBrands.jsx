@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Swal from 'sweetalert2';
 
 const SingleBrands = ({ brand,allAddedbrands,setbrands,setPresentId,setPresentName }) => {
-    const {_id,brandname}=brand;
+    const {_id,brandname,ximage}=brand;
     console.log(brand)
     const handleDelete = _id => {
         console.log(_id)
@@ -43,9 +43,11 @@ const SingleBrands = ({ brand,allAddedbrands,setbrands,setPresentId,setPresentNa
 
     return (
         
-
+            
             <tr>
+               
                 <td>{brandname}</td>
+                <td><img src={ximage} width={100} height={100}/></td>
                 <td><button onClick={() => handleDelete(_id)}>Delete</button></td>
                 <td><button onClick={()=>handleUpdate(_id)}>Update</button></td>
             </tr>
