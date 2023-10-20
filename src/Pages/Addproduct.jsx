@@ -12,7 +12,7 @@ const Addproduct = () => {
                 <div className="col-span-1">
                     <Sidenav />
                 </div>
-                <div className="col-span-5 ml-4">
+                <div className="col-span-5 ml-10">
                     <Outlet />
                 </div>
 

@@ -14,6 +14,8 @@ import AuthProviders from './Providers/AuthProviders';
 import Signup from './Authentication/Signup/Signup';
 import Privateroutes from './Privateroutes';
 import Brands from './Pages/Brands';
+import Productform from './Pages/Productform';
+import Category from './Pages/Category';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,16 @@ const router = createBrowserRouter([
             path:"brands",
             element:<Brands/>,
             loader:()=>fetch('http://localhost:5000/brands')
+          },
+          {
+            path:"category",
+            element:<Category/>,
+            loader:()=>fetch('http://localhost:5000/category')
+          },
+          {
+            path:"productform",
+            element:<Productform/>,
+            
           }
         ]
       },

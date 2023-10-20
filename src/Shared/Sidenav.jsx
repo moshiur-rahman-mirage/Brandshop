@@ -13,7 +13,11 @@ const Sidenav = () => {
                           
                           Brands
                         </MenuItem>
-                        <MenuItem> Add Product</MenuItem>
+                        <MenuItem component={<Link to="category" />}>
+                          
+                          Category
+                        </MenuItem>
+                        <MenuItem component={<Link to="productform" />}> Add Product</MenuItem>
                        
                     </SubMenu>
 
