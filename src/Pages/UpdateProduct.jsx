@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const Productform = ({item}) => {
+const UpdateProduct = ({item}) => {
     const [brand, setBrand] = useState([])
     const [category, setCategory] = useState([])
     const [image, setImage] = useState(null)
@@ -183,4 +183,4 @@ const Productform = ({item}) => {
     );
 };
 
-export default Productform;
+export default UpdateProduct;

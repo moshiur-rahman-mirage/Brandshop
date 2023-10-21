@@ -12,14 +12,9 @@ const Topnav = () => {
     }
 
 
-    const listitems = <>
-        <li><a>Item 1</a></li>
-        <li><a>Submenu 1</a></li>
-        <li><a>Submenu 2</a></li>
-        <li><a>Item 3</a></li>
-    </>
+
     return (
-        <div className="bg-slate-400">
+        <div className="bg-gray-dark">
       <div className="navbar bg-gray-400">
 
                 <div className="navbar-start border-red">
@@ -29,10 +24,10 @@ const Topnav = () => {
                         </label>
                         <ul tabIndex={0} className=" text-neutral-content menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral rounded-box w-52">
                             <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Home</NavLink></li>
-                            <li><NavLink to="/addproduct" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Add Product</NavLink></li>
+                         { user &&   <li><NavLink to="/addproduct" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Add Product</NavLink></li> }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-neutral-content text-xl">Logo</a>
+                    <NavLink to="/" className="btn btn-ghost normal-case text-neutral-content text-xl">{brand}</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu hover:text-white  text-neutral-content menu-horizontal px-1">
