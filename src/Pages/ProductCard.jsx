@@ -30,12 +30,11 @@ const ProductCard = ({ item }) => {
                     <p>Price : {price}</p>
                     <div className="card-actions">
                         <NavLink to={`${_id}`} className="btn btn-ghost">Show Details</NavLink>
-                        {/* <button onClick={onOpenModal} className="btn btn-ghost">Update</button> */}
-                        <NavLink to ={`updateproduct/${_id}`} item={item} className="btn btn-ghost">Update</NavLink>
+                        <button onClick={onOpenModal} className="btn btn-ghost">Update</button>
                     </div>
-                    {/* <Modal open={open} onClose={onCloseModal} center>
+                    <Modal open={open} onClose={onCloseModal} center>
                         <Productform item={item}/>
-                    </Modal> */}
+                    </Modal>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './Pages/Home';
 import Addproduct from './Pages/Addproduct';
-import Cart from './Pages/Cart';
+import Cart from './Pages/Cart/Cart';
 import Login from './Authentication/Login/Login';
 import Root from './Root';
 import AuthProviders from './Providers/AuthProviders';
@@ -49,16 +49,14 @@ const router = createBrowserRouter([
             element: <Productform />,
 
           },
-          {
-            path: ":brandname/updateproduct:_id",
-            element: <UpdateProduct />,
-          },
+
 
         ]
       },
       {
-        path: "/cart",
-        element: <Cart />
+        path: "/cart/:email",
+        element: <Cart />,
+        loader: ({ params }) => fetch(`http://localhost:5000/cart/${params.email}`),
       },
       {
         path: "/login",
@@ -77,6 +75,10 @@ const router = createBrowserRouter([
         path: "/products/:brandname/:_id",
         element: <ItemDetails />,
         loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandname}/${params._id}`),
+      },
+      {
+        path: "products/:brandname/updateproduct:_id",
+        element: <UpdateProduct />,
       },
 
 

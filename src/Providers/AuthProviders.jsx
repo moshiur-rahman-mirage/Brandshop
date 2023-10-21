@@ -44,6 +44,7 @@ const AuthProviders = ({ children }) => {
     }, [])
 
     const brand = "Brand Shop"
+
     const authInfo = {
         user,
         createUser,

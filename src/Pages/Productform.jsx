@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const Productform = ({item}) => {
+const Productform = ({ item }) => {
     const [brand, setBrand] = useState([])
     const [category, setCategory] = useState([])
     const [image, setImage] = useState(null)
@@ -28,23 +28,20 @@ const Productform = ({item}) => {
     }
 
 
-    const handleUpdate = (presentId, brand) => {
+    const handleUpdate = (presentId, item) => {
 
-        // const updatedData = { category }
-        // console.log(updatedData)
         fetch(`http://localhost:5000/brands/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(brand)
+            body: JSON.stringify(item)
 
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                 
-                    
+
                     Swal.fire({
                         title: 'Success',
                         text: 'Data updated Successfully!',
@@ -55,18 +52,7 @@ const Productform = ({item}) => {
             })
     }
 
-    const handleSubmit = (e) => {
-
-        e.preventDefault();
-        const form = e.target;
-        const name = form.pname.value;
-        const brand = form.pbrand.value
-        const category = form.pcategory.value
-        const price = form.prate.value
-        const rating=form.prating.value
-        const specs = form.pspecs.value
-        const img = image
-        const newitem = { name, brand, category, price, specs, img,rating }
+    const handleAdd = (newitem) => {
         fetch('http://localhost:5000/product', {
             method: 'POST',
             headers: {
@@ -90,6 +76,23 @@ const Productform = ({item}) => {
 
                 }
             })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.pname.value;
+        const brand = form.pbrand.value
+        const category = form.pcategory.value
+        const price = form.prate.value
+        const rating = form.prating.value
+        const specs = form.pspecs.value
+        const img = image
+        const newitem = { name, brand, category, price, specs, img, rating }
+        if (item._id === '') {
+            handleAdd(newitem);
+        } else {
+            handleUpdate(item._id, newitem)
+        }
     }
 
     return (
@@ -175,8 +178,8 @@ const Productform = ({item}) => {
 
                 </div>
                 <div>
-                  {!item &&  <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Submit</button>}
-                  {item &&  <button onClick={handleUpdate} className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Update</button>}
+                    <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Submit</button>
+                   
                 </div>
             </form>
         </div>
