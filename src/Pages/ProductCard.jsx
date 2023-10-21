@@ -29,7 +29,7 @@ const ProductCard = ({ item }) => {
                     <p>{specs}</p>
                     <p>Price : {price}</p>
                     <div className="card-actions">
-                        <NavLink to={`/products/${brand}/${_id}`} className="btn btn-ghost">Show Details</NavLink>
+                        <NavLink to={`${_id}`} className="btn btn-ghost">Show Details</NavLink>
                         {/* <button onClick={onOpenModal} className="btn btn-ghost">Update</button> */}
                         <NavLink to ={`updateproduct/${_id}`} item={item} className="btn btn-ghost">Update</NavLink>
                     </div>
