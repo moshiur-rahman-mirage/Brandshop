@@ -32,6 +32,7 @@ const ProductCard = ({ item }) => {
                     <p>Price : {price}</p>
                     <div className='flex items-center gap-2'>
                     <p>Rating : </p>
+                    
                     <FaStar/> 
                     </div>
                     <div className="card-actions">
