@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import Category from './Category';
-import { AuthContext } from '../Providers/AuthProviders';
+
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const ItemDetails = () => {
     const { user} = useContext(AuthContext)
@@ -13,7 +13,7 @@ const ItemDetails = () => {
         const {email}=user
         const cartItem={img,category,specs,name,price,email}
 
-        fetch('http://localhost:5000/cart', {
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/cart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

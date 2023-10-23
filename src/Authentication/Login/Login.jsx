@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+
+
+import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Providers/AuthProviders';
 import { AiFillGoogleCircle } from "react-icons/ai";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../Providers/AuthProviders';
 const Login = () => {
     const location=useLocation();
     const navigate=useNavigate();
@@ -16,11 +20,21 @@ const Login = () => {
 
         signInUser(email, password)
             .then(result => {
-                console.log('login')
+                toast.success('Logged In Successfully!');
+                navigate("/");
                 
             })
             .catch(error => {
                 console.log(error)
+                if(error.code === 'auth/wrong-password'){
+                    toast.error('Please check the Password');
+                  }
+                  if(error.code === 'auth/invalid-login-credentials'){
+                    toast.error('Please check the Email');
+                  }
+                 else{
+                    toast.error('Another Error Occured!');
+                 }
             })
 
 
@@ -28,15 +42,15 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
+                toast.success('Logged In Successfully!');
             })
             .catch(error => {
-                console.error(error)
+                toast.error('Error Occured!');
             })
     }
     return (
         <div>
-
+            <ToastContainer/>
             <section className="bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">

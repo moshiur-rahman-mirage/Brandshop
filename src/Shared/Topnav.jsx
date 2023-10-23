@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProviders';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
 const Topnav = () => {
     const { user, logout, brand, loading } = useContext(AuthContext)
@@ -21,7 +19,7 @@ const Topnav = () => {
 
 
     return (
-        <div className="bg-gray-dark">
+        <div className=" h-[75px] bg-black">
             <div className="navbar bg-gray-400">
 
                 <div className="navbar-start border-red">
@@ -50,16 +48,16 @@ const Topnav = () => {
                                 {/* <span className="badge badge-sm indicator-item"></span> */}
                             </div>
                         </label>
-                      { user && 
-                        <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                            <div className="card-body">
-                                <div className="card-actions">
-                                    <NavLink to={`/cart/${user.email}`} user={user}  className="btn btn-primary btn-block">View cart</NavLink>
+                        {user &&
+                            <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                                <div className="card-body">
+                                    <div className="card-actions">
+                                        <NavLink to={`/cart/${user.email}`} user={user} className="btn btn-primary btn-block">View cart</NavLink>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         }
-                        
+
                         {
                             user ? <button className="btn btn-ghost normal-case text-neutral-content text-xl" onClick={handleSignOut} >Sign Out</button> :
                                 <NavLink to="/login" className="btn btn-ghost normal-case text-neutral-content text-xl">Log In</NavLink>

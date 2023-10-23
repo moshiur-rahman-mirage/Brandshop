@@ -1,17 +1,18 @@
-import React from 'react';
-import Topnav from './Shared/Topnav';
+
+import Brandhero from './Pages/Brands/Brandhero';
+import Hero from './Pages/Hero';
 import Footer from './Shared/Footer';
+import Topnav from './Shared/Topnav';
+
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {
     return (
-        <div>
-            <div className='min-h-[100vh]'>
-            <Topnav/>
-            <Outlet/>
-            </div>
-            
-            <Footer/>
+
+        <div className="min-h-screen object-contain">
+            <Topnav />
+            <Outlet />
+            <Footer />
         </div>
     );
 };

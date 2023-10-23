@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const Productform = ({ item }) => {
+const UpdateProduct = ({ item }) => {
     const [brand, setBrand] = useState([])
     const [category, setCategory] = useState([])
-    const [image, setImage] = useState(null)
+    const {_id}=item
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/brands')
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/brands')
             .then(res => res.json())
             .then(data => setBrand(data))
     }, [])
 
 
-    const convertToBase64 = e => {
-        console.log(e);
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => setImage(reader.result)
-        reader.onerror = (error) => (console.log(error));
 
-    }
 
 
     const handleUpdate = (presentId, item) => {
 
-        fetch(`http://localhost:5000/brands/${presentId}`, {
+        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -52,47 +45,23 @@ const Productform = ({ item }) => {
             })
     }
 
-    const handleAdd = (newitem) => {
-        fetch('http://localhost:5000/product', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(newitem)
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-
-                    // setBrands(data)
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Data Inserted Successfully!',
-                        icon: 'success'
-                    })
-
-
-
-                }
-            })
-    }
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         const form = e.target;
         const name = form.pname.value;
+        
         const brand = form.pbrand.value
         const category = form.pcategory.value
         const price = form.prate.value
         const rating = form.prating.value
         const specs = form.pspecs.value
-        const img = image
+        const img = form.img.value;
         const newitem = { name, brand, category, price, specs, img, rating }
-        if (item._id === '') {
-            handleAdd(newitem);
-        } else {
-            handleUpdate(item._id, newitem)
-        }
+           handleUpdate(_id, newitem)
+
+
     }
 
     return (
@@ -166,7 +135,7 @@ const Productform = ({ item }) => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                             Image
                         </label>
-                        <input className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept='image' onChange={convertToBase64} />
+                        <input className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="img" type="text" />
 
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -178,7 +147,7 @@ const Productform = ({ item }) => {
 
                 </div>
                 <div>
-                    <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Submit</button>
+                    <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Update</button>
                    
                 </div>
             </form>
@@ -186,4 +155,4 @@ const Productform = ({ item }) => {
     );
 };
 
-export default Productform;
+export default UpdateProduct;

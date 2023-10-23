@@ -1,50 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const UpdateProduct = ({item}) => {
+const ProductForm = ({ item }) => {
     const [brand, setBrand] = useState([])
     const [category, setCategory] = useState([])
     const [image, setImage] = useState(null)
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/brands')
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/brands')
             .then(res => res.json())
             .then(data => setBrand(data))
     }, [])
 
 
-    const convertToBase64 = e => {
-        console.log(e);
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => setImage(reader.result)
-        reader.onerror = (error) => (console.log(error));
-
-    }
 
 
-    const handleUpdate = (presentId, brand) => {
 
-        // const updatedData = { category }
-        // console.log(updatedData)
-        fetch(`http://localhost:5000/brands/${presentId}`, {
+    const handleUpdate = (presentId, item) => {
+
+        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(brand)
+            body: JSON.stringify(item)
 
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                 
-                    
+
                     Swal.fire({
                         title: 'Success',
                         text: 'Data updated Successfully!',
@@ -55,19 +45,8 @@ const UpdateProduct = ({item}) => {
             })
     }
 
-    const handleSubmit = (e) => {
-
-        e.preventDefault();
-        const form = e.target;
-        const name = form.pname.value;
-        const brand = form.pbrand.value
-        const category = form.pcategory.value
-        const price = form.prate.value
-        const rating=form.prating.value
-        const specs = form.pspecs.value
-        const img = image
-        const newitem = { name, brand, category, price, specs, img,rating }
-        fetch('http://localhost:5000/product', {
+    const handleAdd = (newitem) => {
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -90,6 +69,26 @@ const UpdateProduct = ({item}) => {
 
                 }
             })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const name = form.pname.value;
+        
+        const brand = form.pbrand.value
+        const category = form.pcategory.value
+        const price = form.prate.value
+        const rating = form.prating.value
+        const specs = form.pspecs.value
+        const img = form.img.value;
+        const newitem = { name, brand, category, price, specs, img, rating }
+        // if (item._id !== '') {
+        //     handleUpdate(item._id, newitem)
+           
+        // } else {
+            handleAdd(newitem);
+        // }
     }
 
     return (
@@ -163,7 +162,7 @@ const UpdateProduct = ({item}) => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                             Image
                         </label>
-                        <input className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept='image' onChange={convertToBase64} />
+                        <input className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="img" type="text" />
 
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -175,12 +174,12 @@ const UpdateProduct = ({item}) => {
 
                 </div>
                 <div>
-                  {!item &&  <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Submit</button>}
-                  {item &&  <button onClick={handleUpdate} className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Update</button>}
+                    <button type="submit" className="mt-3 w-full btn btn-outline  hover:bg-primary-700 focus:ring-4">Submit</button>
+                   
                 </div>
             </form>
         </div>
     );
 };
 
-export default UpdateProduct;
+export default ProductForm;

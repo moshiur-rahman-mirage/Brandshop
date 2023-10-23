@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Topnav from '../Shared/Topnav';
-import Brandhero from './Brandhero';
-import Brandcards from './Brandcards';
+
 import Hero from './Hero';
+import Brandcards from './Brands/Brandcards';
+import Benefits from './Benefits/Benefits';
 
 const Home = () => {
 
@@ -12,9 +13,13 @@ const Home = () => {
 
 
   return (
-    <div className=''>
-      <Hero/>
-      <Brandcards/>
+    <div className='bg-light'>
+      <Hero />
+      <Brandcards />
+      <div className='max-w-7xl mx-auto py-10'>
+        <Benefits />
+      </div>
+
     </div>
   );
 };

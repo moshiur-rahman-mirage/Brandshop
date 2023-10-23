@@ -1,20 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,jsx}"],
+  content: ["./src/**/*.{html,js,jsx}",
+    "./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     extend: {},
     colors: {
-      'blue': '#1fb6ff',
-      'purple': '#7e5bef',
-      'pink': '#ff49db',
-      'orange': '#ff7849',
-      'green': '#13ce66',
-      'yellow': '#ffc82c',
-      'gray-dark': '#273444',
-      'gray': '#8492a6',
-      'gray-light': '#d3dce6',
+      'black': '#171721',
+      'body-color': '#ebebeb',
+      'light': '#BDCDD6',
+      'fade': '#EEE9DA',
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui", "flowbite/plugin")],
 }
 

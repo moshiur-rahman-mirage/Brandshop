@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useLoaderData } from 'react-router-dom';
-import Singlecategory from './Singlecategory';
+import Singlecategory from './Singlecategory'
 
 
 const Category = () => {
@@ -17,7 +17,7 @@ const Category = () => {
     const handleBrandSubmit = (catname) => {
 
         console.log(catname)
-        fetch('http://localhost:5000/category', {
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -43,7 +43,7 @@ const Category = () => {
 
         // const updatedData = { category }
         // console.log(updatedData)
-        fetch(`http://localhost:5000/category/${presentId}`, {
+        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

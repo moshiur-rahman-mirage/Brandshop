@@ -15,7 +15,7 @@ const Signelcategory = ({ category,allAddedCategory,setCategory,setPresentId,set
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/category/${_id}`, {
+                fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

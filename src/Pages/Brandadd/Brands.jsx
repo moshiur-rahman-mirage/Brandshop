@@ -14,21 +14,10 @@ const Brands = () => {
     const [ximage, setxImage] = useState('');
 
 
-
-
-    const convertToBase64 = e => {
-        console.log(e);
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => setxImage(reader.result)
-        reader.onerror = (error) => (console.log(error));
-
-    }
-
     const handleBrandSubmit = (brandname) => {
 
 
-        fetch('http://localhost:5000/brands', {
+        fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/brands', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -55,7 +44,8 @@ const Brands = () => {
 
         // const updatedData = { category }
         // console.log(updatedData)
-        fetch(`http://localhost:5000/brands/${presentId}`, {
+        console.log(presentId)
+        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/brands/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -84,6 +74,7 @@ const Brands = () => {
         e.preventDefault();
         const form = e.target;
         const brandname = form.name.value;
+        const ximage = form.imageurl.value;
         const brand = { brandname, ximage }
         console.log(brand)
         if (presentId !== '') {
@@ -116,9 +107,9 @@ const Brands = () => {
                         <div className='flex flex-col w-full '>
 
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-                                Image
+                                Image URL
                             </label>
-                            <input className="block w-full py-3 px-3 pb-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept='image' onChange={convertToBase64} />
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="imageurl" type="text" />
 
                         </div>
                     </div>

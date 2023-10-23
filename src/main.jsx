@@ -6,24 +6,35 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './Pages/Home';
-import Addproduct from './Pages/Addproduct';
-import Cart from './Pages/Cart/Cart';
-import Login from './Authentication/Login/Login';
-import Root from './Root';
-import AuthProviders from './Providers/AuthProviders';
-import Signup from './Authentication/Signup/Signup';
-import Privateroutes from './Privateroutes';
-import Brands from './Pages/Brands';
-import Productform from './Pages/Productform';
-import Category from './Pages/Category';
+
+import Category from './Pages/Category/Category';
+
 import Products from './Pages/Products';
-import ItemDetails from './Pages/ItemDetails';
-import UpdateProduct from './Pages/UpdateProduct';
+import AuthProviders from './Providers/AuthProviders';
+
+
+import Login from './Authentication/Login/Login';
+import Signup from './Authentication/Signup/Signup';
+import ItemDetails from './Pages/ItemCard/ItemDetails';
+import Cart from './Pages/Cart/Cart';
+
+
+import ProductForm from './Pages/Product/ProductForm';
+import Root from './Root';
+import AddProduct from './Pages/Product/AddProduct';
+import PrivateRoutes from './PrivateRoutes';
+import UpdateProduct from './Pages/Product/UpdateProduct';
+import ErrorPage from './ErrorPage';
+import Brands from './Pages/Brandadd/Brands';
+
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -32,21 +43,21 @@ const router = createBrowserRouter([
 
       {
         path: "/addproduct",
-        element: <Privateroutes><Addproduct></Addproduct></Privateroutes>,
+        element: <PrivateRoutes><AddProduct></AddProduct></PrivateRoutes>,
         children: [
           {
             path: "brands",
             element: <Brands />,
-            loader: () => fetch('http://localhost:5000/brands')
+            loader: () => fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/brands')
           },
           {
             path: "category",
             element: <Category />,
-            loader: () => fetch('http://localhost:5000/category')
+            loader: () => fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category')
           },
           {
             path: "productform",
-            element: <Productform />,
+            element: <ProductForm />,
 
           },
 
@@ -55,26 +66,26 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart/:email",
-        element: <Cart />,
-        loader: ({ params }) => fetch(`http://localhost:5000/cart/${params.email}`),
+        element: <PrivateRoutes><Cart /></PrivateRoutes>,
+        loader: ({ params }) => fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/cart/${params.email}`),
       },
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "/signup",
-        element: <Signup />
+        element: <Signup />,
       },
       {
         path: "/products/:brandname",
         element: <Products />,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandname}`),
+        loader: ({ params }) => fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${params.brandname}`),
       },
       {
         path: "/products/:brandname/:_id",
         element: <ItemDetails />,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandname}/${params._id}`),
+        loader: ({ params }) => fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${params.brandname}/${params._id}`),
       },
       {
         path: "products/:brandname/updateproduct:_id",
