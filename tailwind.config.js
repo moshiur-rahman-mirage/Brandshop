@@ -12,6 +12,6 @@ export default {
       'fade': '#EEE9DA',
     },
   },
-  plugins: [require("daisyui", "flowbite/plugin")],
+  plugins: [require("daisyui"), require('flowbite/plugin')],
 }
 

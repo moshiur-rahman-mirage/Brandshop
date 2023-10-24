@@ -1,10 +1,10 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const UpdateProduct = ({ item }) => {
     const [brand, setBrand] = useState([])
     const [category, setCategory] = useState([])
-    const {_id}=item
+    const { _id } = item
     useEffect(() => {
         fetch('https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/category')
             .then(res => res.json())
@@ -22,8 +22,8 @@ const UpdateProduct = ({ item }) => {
 
 
     const handleUpdate = (presentId, item) => {
-
-        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${presentId}`, {
+        console.log(item)
+        fetch(`http://localhost:5000/products/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -48,18 +48,18 @@ const UpdateProduct = ({ item }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const form = e.target;
         const name = form.pname.value;
-        
+        const banner=form.isBanner.checked;
         const brand = form.pbrand.value
         const category = form.pcategory.value
         const price = form.prate.value
         const rating = form.prating.value
         const specs = form.pspecs.value
         const img = form.img.value;
-        const newitem = { name, brand, category, price, specs, img, rating }
-           handleUpdate(_id, newitem)
+        const newitem = { name, brand, category, price, specs, img, rating,banner }
+        handleUpdate(_id, newitem)
 
 
     }
@@ -135,7 +135,7 @@ const UpdateProduct = ({ item }) => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                             Image
                         </label>
-                        <input className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="img" type="text" />
+                        <input defaultValue={item?.img} className="block w-full py-3 px-3  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="img" type="text" />
 
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -145,10 +145,17 @@ const UpdateProduct = ({ item }) => {
                         <input defaultValue={item?.rating} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="prating" type="text" placeholder="1-5" />
                     </div>
 
+                    <div className=" pt-3 px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
+                            Use As Banner Slider?
+                        </label>
+                        <input id="isBanner" type="checkbox" className="checkbox-sm rounded py-3 px-4" />
+                    </div>
+
                 </div>
                 <div>
                     <button type="submit" className="mt-3 w-full btn btn-outline btn-accent hover:bg-primary-700 focus:ring-4">Update</button>
-                   
+
                 </div>
             </form>
         </div>

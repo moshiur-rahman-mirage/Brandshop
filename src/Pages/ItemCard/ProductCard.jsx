@@ -5,24 +5,24 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ProductForm from '../Product/ProductForm';
 import UpdateProduct from '../Product/UpdateProduct';
+import { Rating } from 'react-simple-star-rating';
+import StarRatings from 'react-star-ratings';
+
 const ProductCard = ({ item }) => {
     //onClick={`/products/${brand}/${_id}`}
-    const { _id, name, category,rating, brand, specs, price, img } = item;
+    const { _id, name, category, rating, brand, specs, price, img } = item;
     const handleDetails = (brand, _id) => {
         Navigate(`/products/${brand}/${_id}`)
     }
-
     const [open, setOpen] = useState(false);
-
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
-
     return (
         <div className='min-h-screen'>
-               
-            <div className="card w-96 object-contain mt-5 bg-body-color shadow-xl">
-                <figure className="px-10 pt-10 object-contain">
+
+            <div className="card object-contain mt-5 bg-body-color shadow-xl">
+                <figure className="px-5 pt-10 object-contain">
                     <img src={img} alt="Items" className="rounded-xl" />
                 </figure>
                 <div className="card-body items-center text-black text-center">
@@ -31,9 +31,8 @@ const ProductCard = ({ item }) => {
                     <p>{specs}</p>
                     <p>Price : {price}</p>
                     <div className='flex items-center gap-2'>
-                    <p>Rating : </p>
-                    
-                    <FaStar/> 
+                        <p>Rating : </p>
+
                     </div>
                     <div className="card-actions">
                         <NavLink to={`${_id}`} className="btn btn-ghost">Show Details</NavLink>

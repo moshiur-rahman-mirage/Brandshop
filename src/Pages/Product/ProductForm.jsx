@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const ProductForm = ({ item }) => {
@@ -72,22 +72,23 @@ const ProductForm = ({ item }) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const form = e.target;
         const name = form.pname.value;
-        
+        const banner=form.isBanner.checked;
         const brand = form.pbrand.value
         const category = form.pcategory.value
         const price = form.prate.value
         const rating = form.prating.value
         const specs = form.pspecs.value
         const img = form.img.value;
-        const newitem = { name, brand, category, price, specs, img, rating }
+        const newitem = { name, brand, category, price, specs, img, rating,banner }
+        console.log(newitem)
         // if (item._id !== '') {
         //     handleUpdate(item._id, newitem)
-           
+
         // } else {
-            handleAdd(newitem);
+        handleAdd(newitem);
         // }
     }
 
@@ -172,10 +173,17 @@ const ProductForm = ({ item }) => {
                         <input defaultValue={item?.rating} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="prating" type="text" placeholder="1-5" />
                     </div>
 
+                    <div className=" pt-3 px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
+                            Use As Banner Slider?
+                        </label>
+                        <input id="isBanner" type="checkbox" className="checkbox-sm rounded py-3 px-4" />
+                    </div>
+
                 </div>
                 <div>
                     <button type="submit" className="mt-3 w-full btn btn-outline  hover:bg-primary-700 focus:ring-4">Submit</button>
-                   
+
                 </div>
             </form>
         </div>

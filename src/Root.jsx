@@ -9,7 +9,7 @@ import { Outlet } from 'react-router-dom';
 const Root = () => {
     return (
 
-        <div className="min-h-screen object-contain">
+        <div className="min-h-screen bg-black object-contain">
             <Topnav />
             <Outlet />
             <Footer />
