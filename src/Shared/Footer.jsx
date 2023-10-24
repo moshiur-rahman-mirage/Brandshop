@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer max-w-7xl  p-10 mx-auto bg-black text-neutral-content">
+            <footer className="footer flex flex-row justify-evenly max-w-7xl  p-10 mx-auto bg-black text-neutral-content">
                 
                     <nav>
                         <header className="footer-title">Services</header>

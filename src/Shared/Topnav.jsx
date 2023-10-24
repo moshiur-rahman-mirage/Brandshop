@@ -4,6 +4,7 @@ import { AuthContext } from '../Providers/AuthProviders';
 
 const Topnav = () => {
     const { user, logout, brand, loading } = useContext(AuthContext)
+    console.log(user)
     // useEffect(() => {
     //     fetch('http://localhost:5000/cart/:email')
     //         .then(res => res.json())
@@ -20,7 +21,7 @@ const Topnav = () => {
 
     return (
         <div className=" h-[75px] bg-black">
-            <div className="navbar bg-gray-400">
+            <div className="navbar ">
 
                 <div className="navbar-start border-red">
                     <div className="dropdown">
@@ -42,7 +43,11 @@ const Topnav = () => {
                 </div>
                 <div className='navbar-end text-neutral-content'>
                     <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle">
+                        
+                        {
+                            user && user.displayName
+                        }
+                        <label tabIndex={0} className="btn btn-ghost border-white btn-circle">
                             <div className="indicator">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                                 {/* <span className="badge badge-sm indicator-item"></span> */}
@@ -57,17 +62,29 @@ const Topnav = () => {
                                 </div>
                             </div>
                         }
+                    </div>
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                 {user &&   <img src={user.photoURL} /> }
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                {
+                                    user ? <button className="btn normal-case text-black-content text-xl" onClick={handleSignOut} >Sign Out</button> :
+                                        <NavLink to="/login" className="btn normal-case text-black-content text-xl">Log In</NavLink>
+                                }
+                            </ul>
+                        </div>
 
-                        {
-                            user ? <button className="btn btn-ghost normal-case text-neutral-content text-xl" onClick={handleSignOut} >Sign Out</button> :
-                                <NavLink to="/login" className="btn btn-ghost normal-case text-neutral-content text-xl">Log In</NavLink>
-                        }
+
+             
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        
     );
 };
 

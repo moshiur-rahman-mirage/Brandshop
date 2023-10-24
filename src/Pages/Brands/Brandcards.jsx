@@ -14,7 +14,7 @@ const Brandcards = () => {
 
     return (
         <div>
-              <div className='text-4xl py-10 text-black text-center font-bold'>Top Brands</div>
+              <div className='text-4xl py-10 text-body-color text-center font-bold'>Top Brands</div>
             <div className='max-w-7xl mx-auto  grid grid-cols-1 lg:grid-cols-3 gap-10'>
                 {brand.map(b => {
                     return (

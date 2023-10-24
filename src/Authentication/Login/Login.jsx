@@ -32,9 +32,7 @@ const Login = () => {
                   if(error.code === 'auth/invalid-login-credentials'){
                     toast.error('Please check the Email');
                   }
-                 else{
-                    toast.error('Another Error Occured!');
-                 }
+                 
             })
 
 

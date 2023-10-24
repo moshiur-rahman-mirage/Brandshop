@@ -2,16 +2,7 @@ import { useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css'
 
-const slideimage = [
-  {
-    url: "https://i.ibb.co/cywTKJH/vojtech-bruzek-J82-Gxqnw-KSs-unsplash.jpg",
-    caption: "First Img"
-  },
-  {
-    url: "https://i.ibb.co/cywTKJH/vojtech-bruzek-J82-Gxqnw-KSs-unsplash.jpg",
-    caption: "First Img"
-  }
-]
+
 const divStyle = {
   display: 'flex',
   alignItems: 'center',
@@ -29,13 +20,14 @@ const [banner,setBanner]=useState([])
         .then(data => setBanner(data))
 }, [])
 
-console.log(banner)
+// console.log(banner)
   return (
     <div className="slide-container">
       <Slide>
         {banner.map((slideimage, index) => (
           <div key={index}>
-            <div className="min-h-screen border object-scale-down" style={{ ...divStyle, 'backgroundImage': `url(${slideimage.img})` }}>
+            {console.log(slideimage.img)}
+            <div className="min-h-screen border object-contain" style={{ ...divStyle, 'backgroundImage': `url(${slideimage.img})` }}>
               <span className="mb-[-10px] border font-bold text-4xl text-black">{slideimage.specs}</span>
             </div>
           </div>

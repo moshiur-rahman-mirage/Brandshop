@@ -84,7 +84,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:brandname/:_id",
-        element: <ItemDetails />,
+        element: <PrivateRoutes><ItemDetails /></PrivateRoutes>,
         loader: ({ params }) => fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${params.brandname}/${params._id}`),
       },
       {

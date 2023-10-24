@@ -4,7 +4,7 @@ const Benefits = () => {
     return (
         <div className='min-h-screen flex justify-center items-center '>
             <div>
-                <h2 className='text-center font-bold text-4xl pb-10 mx-auto text-black'>Our Special Services</h2>
+                <h2 className='text-center font-bold text-4xl pb-10 mx-auto text-body-color'>Our Special Services</h2>
 
                 <div className='grid grid-cols-4 gap-5 '>
                     <div className="flex flex-col md:flex-row rounded-lg md:justify-center md:pl-2 items-center bg-body-color text-neutral-content">

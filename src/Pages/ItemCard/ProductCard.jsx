@@ -31,7 +31,7 @@ const ProductCard = ({ item }) => {
                     <p>{specs}</p>
                     <p>Price : {price}</p>
                     <div className='flex items-center gap-2'>
-                        <p>Rating : </p>
+                        <p>Rating : {rating} </p>
 
                     </div>
                     <div className="card-actions">
