@@ -23,7 +23,7 @@ const UpdateProduct = ({ item }) => {
 
     const handleUpdate = (presentId, item) => {
         console.log(item)
-        fetch(`http://localhost:5000/products/${presentId}`, {
+        fetch(`https://b8a10-brandshop-server-side-moshiur-rahman-mirage.vercel.app/products/${presentId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
