@@ -3,6 +3,7 @@ export default {
   content: ["./src/**/*.{html,js,jsx}",
     "./node_modules/flowbite/**/*.js"
   ],
+  darkMode:"class",
   theme: {
     extend: {},
     colors: {

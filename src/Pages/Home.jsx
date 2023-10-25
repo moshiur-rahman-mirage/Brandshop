@@ -14,7 +14,7 @@ const Home = () => {
 
 
   return (
-    <div className=''>
+    <div>
       <Hero />
       <Brandcards />
       <div className='max-w-7xl mx-auto py-10'>

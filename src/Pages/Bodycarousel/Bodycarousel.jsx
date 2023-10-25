@@ -26,7 +26,7 @@ const Bodycarousel = () => {
                 <Slide>
                     {banner.map((slideimage, index) => (
                         <div key={index}>
-                            {console.log(slideimage.img)}
+                            
                             <div className="min-h-screen border object-contain" style={{ ...divStyle, 'backgroundImage': `url(${slideimage.img})` }}>
                                
                             </div>
