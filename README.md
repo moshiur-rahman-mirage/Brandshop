@@ -1,8 +1,9 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Features :
+<ul>
+  <li>Dynamically add brand, category, item</li>
+  <li>add products , brand and category will come dynamically</li>
+  <li>Show products and add products in cart </li>
+  <li>User wise cart</li>
+  <li>User can remove item from cart</li>
+  <li>Authentication with google and email</li>
+</ul>
