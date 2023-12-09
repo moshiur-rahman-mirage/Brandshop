@@ -8,9 +8,8 @@ This Is a simple Brandshop website. This Shop Sells Technology Products.
 
 - [Features](#Features)
 - [Technology](#Technology)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [Installation](#Installation)
+
 
 
 ## Features
