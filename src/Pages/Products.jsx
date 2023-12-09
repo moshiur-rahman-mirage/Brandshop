@@ -11,7 +11,7 @@ const Products = () => {
     console.log(brandname)
     return (
         <div className='bg-light flex flex-col'>
-            <Sliderimg brandname={brandname} />
+            {/* <Sliderimg brandname={brandname} /> */}
 
             <h2 className='text-4xl font-bold mx-auto py-5'>{brandname} Products</h2>
             {len < 1 &&
